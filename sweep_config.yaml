@@ -1,0 +1,29 @@
+method: bayes
+metric:
+  name: Validation AUC
+  goal: maximize
+parameters:
+  hidden_channels:
+    values: [32, 64, 128]
+  lr:
+    distribution: 'uniform'
+    min: 0.0001
+    max: 0.01
+  batch_size:
+    distribution: 'q_log_uniform_values'
+    q: 8
+    min: 32
+    max: 512
+  epochs:
+    value: 15
+  loss:
+    value: "CrossEntropyLoss"
+  optimizer:
+    values: ["Adam", 'SGD']
+  first_num_neighbours:
+    values: [10, 20]
+  second_num_neighbours:
+    values: [10, 20]
+  negative_sampling_ratio:
+    values: [1, 2]
+
